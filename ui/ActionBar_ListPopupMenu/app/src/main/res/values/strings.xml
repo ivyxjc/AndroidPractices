@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ActionBarComptListPopupMenu</string>
+    <string name="content_open_popup">remove</string>
+    <string name="remove">Remove</string>
+</resources>

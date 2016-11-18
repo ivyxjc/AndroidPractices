@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ActionBar_Basic</string>
+
+    <string name="menu_setting">Setting</string>
+    <string name="menu_refresh">Refresh</string>
+
+</resources>
