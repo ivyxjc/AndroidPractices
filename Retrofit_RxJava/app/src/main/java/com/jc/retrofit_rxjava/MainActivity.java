@@ -12,6 +12,8 @@ import com.jc.retrofit_rxjava.model.MovieEntity;
 import com.jc.retrofit_rxjava.network.API;
 import com.jc.retrofit_rxjava.network.HttpMethods;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG="retrofit_rxjava_main";
 
     private TextView mResultText;
+    private SubscriberOnNextListener getTopMovieNext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         Subscriber<MovieEntity> subscriber=new Subscriber<MovieEntity>() {
             @Override
             public void onCompleted() {
-                Toast.makeText(MainActivity.this,"get top movie completed",Toast.LENGTH_SHORT);
+                Toast.makeText(MainActivity.this,"get top movie completed",Toast.LENGTH_LONG);
             }
 
             @Override
@@ -98,6 +101,15 @@ public class MainActivity extends AppCompatActivity {
                 mResultText.setText(movieEntity.toString());
             }
         };
-        HttpMethods.getInstance().getTopMovie(subscriber,0,10);
+
+        getTopMovieNext=new SubscriberOnNextListener<List<MovieEntity>>() {
+
+            @Override
+            public void onNext(List<MovieEntity> movieEntities) {
+                mResultText.setText(movieEntities.toString());
+            }
+        };
+//        HttpMethods.getInstance().getTopMovie(subscriber,0,10);
+        HttpMethods.getInstance().getTopMovie(new ProgressSubscriber<MovieEntity>(this,getTopMovieNext),0,10);
     }
 }
