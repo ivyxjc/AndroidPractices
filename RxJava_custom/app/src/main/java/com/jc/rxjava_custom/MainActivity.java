@@ -2,13 +2,6 @@ package com.jc.rxjava_custom;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-
-import rx.Observable;
-import rx.Observer;
-import rx.Subscriber;
-import rx.functions.Action0;
-import rx.functions.Action1;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -84,8 +77,11 @@ public class MainActivity extends AppCompatActivity {
 //        observable.subscribe(onNextAction);
 //        observable.subscribe(onNextAction,onErrorAction);
 //        observable.subscribe(onNextAction,onErrorAction,onCompletedAction);
+//
+//        Simple s=new Simple();
+//        s.start();
 
-        Simple s=new Simple();
-        s.start();
+        DoubanRun douban=new DoubanRun();
+        douban.start();
     }
 }

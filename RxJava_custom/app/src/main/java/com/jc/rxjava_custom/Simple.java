@@ -2,6 +2,8 @@ package com.jc.rxjava_custom;
 
 import android.util.Log;
 
+import com.jc.rxjava_custom.Pojo.Contributor;
+
 import java.io.IOException;
 import java.util.List;
 

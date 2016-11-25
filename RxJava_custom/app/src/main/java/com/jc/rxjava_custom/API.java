@@ -1,5 +1,7 @@
 package com.jc.rxjava_custom;
 
+import com.jc.rxjava_custom.Pojo.Contributor;
+
 import java.util.List;
 
 import retrofit2.Call;

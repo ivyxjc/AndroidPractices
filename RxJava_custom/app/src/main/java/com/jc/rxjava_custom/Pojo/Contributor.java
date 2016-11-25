@@ -1,4 +1,4 @@
-package com.jc.rxjava_custom;
+package com.jc.rxjava_custom.Pojo;
 
 /**
  * Created by ivyxjc on on 2016/11/25.
