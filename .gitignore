@@ -50,3 +50,5 @@ captures/
 .externalNativeBuild
 
 config/
+
+**/config.*
