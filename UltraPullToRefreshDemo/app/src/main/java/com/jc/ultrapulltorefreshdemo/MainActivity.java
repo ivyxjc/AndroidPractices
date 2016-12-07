@@ -3,6 +3,9 @@ package com.jc.ultrapulltorefreshdemo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,8 +16,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.jc.ultrapulltorefreshdemo.model.Contentlist;
+import com.jc.ultrapulltorefreshdemo.model.News;
+import com.jc.ultrapulltorefreshdemo.net.Api;
+import com.jc.ultrapulltorefreshdemo.net.HttpMethod;
+import com.jc.ultrapulltorefreshdemo.util.GetApikey;
+
+import java.util.ArrayList;
+
+import rx.Subscriber;
+import rx.schedulers.Schedulers;
+import rx.android.schedulers.AndroidSchedulers;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private RecyclerView mRecyclerView;
+    private ArrayList<Contentlist> datas;
+    private RecyclerViewAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +59,46 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        mRecyclerView=(RecyclerView)findViewById(R.id.news_rv);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        datas=new ArrayList<>();
+        mAdapter=new RecyclerViewAdapter(this,datas);
+        mRecyclerView.setAdapter(mAdapter);
+
+        String apiKey=GetApikey.getKey(this,"config.txt");
+        Api.NewsService service=(HttpMethod.getRetrofit()).create(Api.NewsService.class);
+        service.getList(apiKey,1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<News>() {
+                               @Override
+                               public void onCompleted() {
+                                    Log.i("ttttt","complete");
+
+                               }
+
+                               @Override
+                               public void onError(Throwable e) {
+                                    Log.i("ttttt",e.toString());
+
+                               }
+
+                               @Override
+                               public void onNext(News news) {
+                                   Log.i("ttttt",news.toString());
+                                   datas=news.getShowapi_res_body().getPagebean().getContentlist();
+                                   Log.i("ttttt",datas.size()+"");
+                                   Log.i("ttttt",datas.get(0).getTitle());
+                                   notifyDatasetChanged(datas);
+                               }
+                           });
+    }
+
+
+    private void notifyDatasetChanged(ArrayList<Contentlist> list){
+        mAdapter.refresh(list);
     }
 
     @Override

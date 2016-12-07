@@ -1,40 +1,32 @@
 package com.jc.ultrapulltorefreshdemo.model;
 
-/**
- * Created by jc on 12/6/2016.
- */
-
 public class Contentlist
 {
-
-    private String havePic;
-
     private String pubDate;
 
     private String channelName;
 
+    private String desc;
+
+    private String sentiment_display;
+
+    private String channelId;
+
+    private String nid;
+
+    private String link;
+
+    private String content;
+
+
+
     private String title;
 
-    private String desc;
 
 
     private String source;
 
-    private String channelId;
-
-    private String link;
-
-
-
-    public String getHavePic ()
-    {
-        return havePic;
-    }
-
-    public void setHavePic (String havePic)
-    {
-        this.havePic = havePic;
-    }
+    private String html;
 
     public String getPubDate ()
     {
@@ -56,16 +48,6 @@ public class Contentlist
         this.channelName = channelName;
     }
 
-    public String getTitle ()
-    {
-        return title;
-    }
-
-    public void setTitle (String title)
-    {
-        this.title = title;
-    }
-
     public String getDesc ()
     {
         return desc;
@@ -74,6 +56,67 @@ public class Contentlist
     public void setDesc (String desc)
     {
         this.desc = desc;
+    }
+
+    public String getSentiment_display ()
+    {
+        return sentiment_display;
+    }
+
+    public void setSentiment_display (String sentiment_display)
+    {
+        this.sentiment_display = sentiment_display;
+    }
+
+    public String getChannelId ()
+    {
+        return channelId;
+    }
+
+    public void setChannelId (String channelId)
+    {
+        this.channelId = channelId;
+    }
+
+    public String getNid ()
+    {
+        return nid;
+    }
+
+    public void setNid (String nid)
+    {
+        this.nid = nid;
+    }
+
+    public String getLink ()
+    {
+        return link;
+    }
+
+    public void setLink (String link)
+    {
+        this.link = link;
+    }
+
+    public String getContent ()
+    {
+        return content;
+    }
+
+    public void setContent (String content)
+    {
+        this.content = content;
+    }
+
+
+    public String getTitle ()
+    {
+        return title;
+    }
+
+    public void setTitle (String title)
+    {
+        this.title = title;
     }
 
 
@@ -87,23 +130,19 @@ public class Contentlist
         this.source = source;
     }
 
-    public String getChannelId ()
+    public String getHtml ()
     {
-        return channelId;
+        return html;
     }
 
-    public void setChannelId (String channelId)
+    public void setHtml (String html)
     {
-        this.channelId = channelId;
+        this.html = html;
     }
 
-    public String getLink ()
+    @Override
+    public String toString()
     {
-        return link;
-    }
-
-    public void setLink (String link)
-    {
-        this.link = link;
+        return "ClassPojo [pubDate = "+pubDate+", channelName = "+channelName+", desc = "+desc+", sentiment_display = "+sentiment_display+", channelId = "+channelId+", nid = "+nid+", link = "+link+", content = "+content+", title = "+title+", source = "+source+", html = "+html+"]";
     }
 }

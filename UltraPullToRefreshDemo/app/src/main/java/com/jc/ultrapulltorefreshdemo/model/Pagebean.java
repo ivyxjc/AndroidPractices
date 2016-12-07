@@ -1,5 +1,7 @@
 package com.jc.ultrapulltorefreshdemo.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by jc on 12/6/2016.
  */
@@ -8,7 +10,7 @@ public class Pagebean
 {
     private String allPages;
 
-    private Contentlist[] contentlist;
+    private ArrayList<Contentlist> contentlist;
 
     private String currentPage;
 
@@ -26,12 +28,12 @@ public class Pagebean
         this.allPages = allPages;
     }
 
-    public Contentlist[] getContentlist ()
+    public ArrayList<Contentlist> getContentlist ()
     {
         return contentlist;
     }
 
-    public void setContentlist (Contentlist[] contentlist)
+    public void setContentlist (ArrayList<Contentlist> contentlist)
     {
         this.contentlist = contentlist;
     }
