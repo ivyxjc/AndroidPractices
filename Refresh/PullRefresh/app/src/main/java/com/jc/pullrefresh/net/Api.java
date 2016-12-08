@@ -1,10 +1,8 @@
 package com.jc.pullrefresh.net;
 
-<<<<<<< HEAD
-import com.jc.pullrefresh.model.News;
-=======
+
+
 import com.jc.pullrefresh.model.*;
->>>>>>> 3ef8d8194b4fcfc9f35ddf05c1126957f722bcec
 
 import retrofit2.http.GET;
 import retrofit2.http.Header;

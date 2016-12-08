@@ -18,11 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-<<<<<<< HEAD
 import com.jc.pullrefresh.model.Contentlist;
-=======
-import com.jc.pullrefresh.model.*;
->>>>>>> 3ef8d8194b4fcfc9f35ddf05c1126957f722bcec
 import com.jc.pullrefresh.model.News;
 import com.jc.pullrefresh.net.HttpMethod;
 import com.jc.pullrefresh.net.Api;
