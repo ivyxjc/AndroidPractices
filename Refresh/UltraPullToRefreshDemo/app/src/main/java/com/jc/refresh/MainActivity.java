@@ -25,12 +25,10 @@ import com.jc.ultrapulltorefreshdemo.R;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-=======
+
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
->>>>>>> 3ef8d8194b4fcfc9f35ddf05c1126957f722bcec
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
 import rx.android.schedulers.AndroidSchedulers;
@@ -41,11 +39,10 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView mRecyclerView;
     private ArrayList<Contentlist> datas;
     private RecyclerViewAdapter mAdapter;
-<<<<<<< HEAD
-=======
+
     PtrFrameLayout mRefreshLayout;
     private int pageNum=0;
->>>>>>> 3ef8d8194b4fcfc9f35ddf05c1126957f722bcec
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +69,11 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-<<<<<<< HEAD
-=======
+
         mRefreshLayout=(PtrFrameLayout)findViewById(R.id.refresh_layout);
 //        mRefreshLayout.setLoadingMinTime(1000);
         mRefreshLayout.setPullToRefresh(true);
->>>>>>> 3ef8d8194b4fcfc9f35ddf05c1126957f722bcec
+
 
         mRecyclerView=(RecyclerView)findViewById(R.id.news_rv);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -85,35 +81,6 @@ public class MainActivity extends AppCompatActivity
         mAdapter=new RecyclerViewAdapter(this,datas);
         mRecyclerView.setAdapter(mAdapter);
 
-<<<<<<< HEAD
-        String apiKey=GetApikey.getKey(this,"config.txt");
-        Api.NewsService service=(HttpMethod.getRetrofit()).create(Api.NewsService.class);
-        service.getList(apiKey,1)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<News>() {
-                               @Override
-                               public void onCompleted() {
-                                    Log.i("ttttt","complete");
-
-                               }
-
-                               @Override
-                               public void onError(Throwable e) {
-                                    Log.i("ttttt",e.toString());
-
-                               }
-
-                               @Override
-                               public void onNext(News news) {
-                                   Log.i("ttttt",news.toString());
-                                   datas=news.getShowapi_res_body().getPagebean().getContentlist();
-                                   Log.i("ttttt",datas.size()+"");
-                                   Log.i("ttttt",datas.get(0).getTitle());
-                                   notifyDatasetChanged(datas);
-                               }
-                           });
-=======
         final String apiKey=GetApikey.getKey(this,"config.txt");
         final Api.NewsService service=(HttpMethod.getRetrofit()).create(Api.NewsService.class);
 
@@ -166,7 +133,6 @@ public class MainActivity extends AppCompatActivity
                         mRefreshLayout.refreshComplete();
                     }
                 });
->>>>>>> 3ef8d8194b4fcfc9f35ddf05c1126957f722bcec
     }
 
 
