@@ -18,7 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.jc.pullrefresh.model.Contentlist;
+import com.jc.pullrefresh.model.*;
 import com.jc.pullrefresh.model.News;
 import com.jc.pullrefresh.net.HttpMethod;
 import com.jc.pullrefresh.net.Api;
