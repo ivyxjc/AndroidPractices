@@ -89,14 +89,12 @@ public class MainActivity extends AppCompatActivity
         mRefreshLayout.setPtrHandler(new PtrHandler() {
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-
                 // here check list view, not content.
                 return PtrDefaultHandler.checkContentCanBePulledDown(frame,content, header);
             }
 
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-                Log.i("test", "-----onRefreshBegin-----");
                 pageNum+=1;
                 updateDatas(service,apiKey,pageNum);
             }
@@ -111,25 +109,20 @@ public class MainActivity extends AppCompatActivity
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<News>() {
                     @Override
-                    public void onCompleted() {
-                        Log.i("ttttt","complete");
-
+                    public void onCompleted(){
+                        // TODO: 2016/12/9
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("ttttt",e.toString());
+                        // TODO: 2016/12/9
 
                     }
 
                     @Override
                     public void onNext(News news) {
-                        Log.i("ttttt",news.toString());
                         datas=news.getShowapi_res_body().getPagebean().getContentlist();
-                        Log.i("ttttt",datas.size()+"");
-                        Log.i("ttttt",datas.get(0).getTitle());
                         notifyDatasetChanged(datas);
-//                        mSwipeRefreshLayout.setRefreshing(false);
                         mRefreshLayout.refreshComplete();
                     }
                 });
