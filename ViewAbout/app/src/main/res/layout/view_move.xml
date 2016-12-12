@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.jc.viewabout.SlideTextView
+        android:id="@+id/slide_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="一二三四五六七八九十十一十二十三十四十五十六十七"
+        android:visibility="visible"
+        />
+
+</LinearLayout>
