@@ -18,6 +18,9 @@ import com.jc.viewabout.R;
  * This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
  */
 
+/**
+ * 自定义ListView, 支持侧滑删除.
+ */
 public class SlideListView extends ListView implements View.OnTouchListener ,GestureDetector.OnGestureListener {
 
     private final String TAG="slidelistview";
@@ -36,6 +39,9 @@ public class SlideListView extends ListView implements View.OnTouchListener ,Ges
         setOnTouchListener(this);
     }
 
+    /**
+     * 删除操作监听接口
+     */
     public interface OnDeleteListener{
         public void onDelete(int position);
     }
