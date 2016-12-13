@@ -82,7 +82,7 @@ public class SlideListView extends ListView implements View.OnTouchListener ,Ges
         Log.i("slidelistview","onFling");
         if(!mIsDelbtnShown && Math.abs(v)>Math.abs(v1)*2&&selectedItemIndex>=0){
             if(mDelButton==null){
-                mDelButton= LayoutInflater.from(getContext()).inflate(R.layout.slide_listview_del_btn,null);
+                mDelButton= LayoutInflater.from(getContext()).inflate(R.layout.slide_del_btn,null);
             }
             mDelButton.setOnClickListener(new OnClickListener() {
                 @Override

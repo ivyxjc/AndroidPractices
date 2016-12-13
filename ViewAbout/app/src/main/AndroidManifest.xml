@@ -30,15 +30,19 @@
         </activity>
 
         <activity android:name=".customView.titleView.TitleViewActivity">
+
+        </activity>
+        
+        <activity android:name=".customView.slideListView.SlideListViewActivity">
+
+        </activity>
+
+        <activity android:name=".viewUsage.SelectorAcitivty">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        
-        <activity android:name=".customView.slideListView.SlideListViewActivity">
-
         </activity>
 
 
