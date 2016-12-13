@@ -38,13 +38,16 @@
         </activity>
 
         <activity android:name=".viewUsage.SelectorAcitivty">
+
+        </activity>
+
+        <activity android:name=".customView.slideRecyclerView.SlideRecyclerViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
     </application>
 

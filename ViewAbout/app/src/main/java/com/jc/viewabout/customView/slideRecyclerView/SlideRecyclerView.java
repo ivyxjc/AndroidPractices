@@ -29,9 +29,9 @@ public class SlideRecyclerView extends RecyclerView implements View.OnTouchListe
     private boolean mIsDelbtnShown;
     private Button mDelButton;
     private ViewGroup mViewGroup;
-    private int mSelectedItemIndex;
     private LinearLayoutManager mLayoutManager;
     private OnDeleteListener mListener;
+    private boolean mIsFlingValid=false;
 
     public SlideRecyclerView(Context context, AttributeSet attrs){
         super(context,attrs);
@@ -50,7 +50,9 @@ public class SlideRecyclerView extends RecyclerView implements View.OnTouchListe
     }
 
     @Override
-    public boolean onDown(MotionEvent e) {
+    public boolean onDown(MotionEvent e)
+    {
+        Log.i("slide","onDown()");
         return false;
     }
 
@@ -66,6 +68,7 @@ public class SlideRecyclerView extends RecyclerView implements View.OnTouchListe
 
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        Log.i("slide","onScroll()");
         return false;
     }
 
@@ -76,51 +79,69 @@ public class SlideRecyclerView extends RecyclerView implements View.OnTouchListe
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        if(!mIsDelbtnShown&&Math.abs(velocityX)>Math.abs(velocityY)*2){
+        Log.i("slide","onFling()");
+        if(mViewGroup==null){
+            mIsFlingValid=false;
+        }else {
+            mIsFlingValid=true;
+        }
+        if(!mIsDelbtnShown&&mIsFlingValid&&Math.abs(velocityX)>Math.abs(velocityY)*2){
             if(mDelButton==null){
-                LayoutInflater.from(getContext()).inflate(R.layout.slide_del_btn,null);
+                mDelButton=(Button)LayoutInflater.from(getContext()).inflate(R.layout.slide_del_btn,null);
             }
             mDelButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    mViewGroup.removeView(mDelButton);
+                    mListener.onDelete(indexOfChild(mViewGroup));
+                    mIsDelbtnShown=false;
                 }
             });
-            mViewGroup=(ViewGroup)getChildAt(mSelectedItemIndex-((LinearLayoutManager)mLayoutManager).findFirstVisibleItemPosition());
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                     AbsListView.LayoutParams.WRAP_CONTENT, AbsListView.LayoutParams.WRAP_CONTENT);
             params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             params.addRule(RelativeLayout.CENTER_VERTICAL);
             mViewGroup.addView(mDelButton,params);
-            Log.i(TAG,"addView");
             mIsDelbtnShown=true;
         }
         return false;
     }
 
-    public int pointToPosition(int x, int y) {
-        Rect frame = mTouchFrame;
-        if (frame == null) {
-            mTouchFrame = new Rect();
-            frame = mTouchFrame;
-        }
-
-        final int count = getChildCount();
-        for (int i = count - 1; i >= 0; i--) {
-            final View child = getChildAt(i);
-            if (child.getVisibility() == View.VISIBLE) {
-                child.getHitRect(frame);
-                if (frame.contains(x, y)) {
-                    return mFirstPosition + i;
-                }
-            }
-        }
-        return INVALID_POSITION;
-    }
+//    public int pointToPosition(int x, int y) {
+//        Rect frame = mTouchFrame;
+//        if (frame == null) {
+//            mTouchFrame = new Rect();
+//            frame = mTouchFrame;
+//        }
+//
+//        final int count = getChildCount();
+//        for (int i = count - 1; i >= 0; i--) {
+//            final View child = getChildAt(i);
+//            if (child.getVisibility() == View.VISIBLE) {
+//                child.getHitRect(frame);
+//                if (frame.contains(x, y)) {
+//                    return mFirstPosition + i;
+//                }
+//            }
+//        }
+//        return INVALID_POSITION;
+//    }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        Log.i("slide","onTouch()");
+
         //ListView中有根据pointToPosition(x, y)获取点击item的position
-        mSelectedItemIndex=
+        //RecyclerView中可以根据x,y获取所在的view
+        mViewGroup=(ViewGroup)findChildViewUnder((int)event.getX(),(int)event.getY());
+
+        if(mIsDelbtnShown){
+            mViewGroup.removeView(mDelButton);
+            mIsDelbtnShown=false;
+            return false;
+        }else {
+            return mGestureDetector.onTouchEvent(event);
+        }
+
     }
 }
