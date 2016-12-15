@@ -8,6 +8,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by jc on 12/7/2016.
  */
@@ -24,14 +27,15 @@ public class DetaiActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Intent intent=getIntent();
-        url=(String)intent.getSerializableExtra("detail_url");
-        title=(String)intent.getSerializableExtra("detail_title");
+        Intent intent = getIntent();
+        url = (String) intent.getSerializableExtra("detail_url");
+        title = (String) intent.getSerializableExtra("detail_title");
 
-        mWebView=(WebView)findViewById(R.id.webview);
+        mWebView = (WebView) findViewById(R.id.webview);
         WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setBuiltInZoomControls(false);
