@@ -42,6 +42,10 @@
         </activity>
 
         <activity android:name=".customView.slideRecyclerView.SlideRecyclerViewActivity">
+
+        </activity>
+
+        <activity android:name=".customView.customOnDrawView.CustomOnDrawActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
