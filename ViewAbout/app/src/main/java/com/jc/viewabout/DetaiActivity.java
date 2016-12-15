@@ -8,6 +8,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import java.util.Collections;
+
 /**
  * Created by jc on 12/7/2016.
  */
